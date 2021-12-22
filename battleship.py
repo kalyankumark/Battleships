@@ -25,7 +25,19 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    return
+    # data={}
+    data["rows"]=10
+    data["cols"]=10
+    data["boardsize"]=500
+    data["cellsize"]=10
+    data["userboard"]=emptyGrid(data["rows"],data["cols"])
+    data["computerboard"]=emptyGrid(data["rows"],data["cols"])
+    data["numberofships"] = 5
+    data["computerboard"]=addShips(data["computerboard"] ,data["numberofships"])
+    return data
+
+# print(makeModel({}))
+
 
 
 '''
@@ -66,7 +78,7 @@ def emptyGrid(rows, cols):
     for i in range(rows):
         value=[]
         for j in range(cols):
-            value.append(1)
+            value.append(EMPTY_UNCLICKED)
         grid.append(value)
     return grid
 
@@ -95,7 +107,7 @@ Returns: bool
 def checkShip(grid, ship):
     for x in ship: # [[1,2],[1,3],[1,4]]
         #x=[1,2]
-        if grid[x[0]][x[1]]!=1:
+        if grid[x[0]][x[1]]!=EMPTY_UNCLICKED:
  
             return False
     return True
@@ -109,11 +121,11 @@ Returns: 2D list of ints
 def addShips(grid, numShips):
     count=0
     while count<numShips:
-        new=createShip()
-        lst=checkShip(grid,new)
-        if lst==True:
-            for y in new:
-                grid[y[0]][y[1]]=2
+        newship=createShip()
+        cs=checkShip(grid,newship)
+        if cs==True:
+            for y in newship:
+                grid[y[0]][y[1]]=SHIP_UNCLICKED
             count+=1
        
     return grid
@@ -295,10 +307,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testEmptyGrid()
-    test.testCreateShip()
-    test.testCheckShip()
-    test.testAddShips()
+    test.testMakeModel()
 
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
