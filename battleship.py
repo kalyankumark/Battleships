@@ -209,9 +209,9 @@ Returns: list of ints
 def getClickedCell(data, event):
     csize=int(data["cellsize"])
     x_cordinate = event.x
-    print("x",event.x)
+    # print("x",event.x)
     y_cordinate = event.y
-    print("y",event.y)
+    # print("y",event.y)
     data["getClickedCell"] = [int(event.y/csize), int(event.x/csize)]
     # print(data["getClickedCell"])
     return data["getClickedCell"]
