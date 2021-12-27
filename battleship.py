@@ -36,7 +36,7 @@ def makeModel(data):
     data["computerboard"]=emptyGrid(data["rows"],data["cols"])
     data["numberofships"] = 5
     data["computerboard"]=addShips(data["computerboard"] ,data["numberofships"])
-    data["tempship"]=[]
+    data["tempship"]=test.testship()
     data["userShip"]=0
     print("data",data)
     return data
@@ -122,6 +122,7 @@ Returns: bool
 def checkShip(grid, ship):
     for x in ship: # [[1,2],[1,3],[1,4]]
         #x=[1,2]
+        print("grid[x[0]][x[1]]",grid[x[0]][x[1]])
         if grid[x[0]][x[1]]!=EMPTY_UNCLICKED:
  
             return False
@@ -223,11 +224,13 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
+    # print("drawship",ship)
     for a in ship:
         fst=a[0]
         sec=a[1]
         canvas.create_rectangle(sec*data["cellsize"],fst * data["cellsize"], (1 + sec) * data["cellsize"], 
                                          (fst + 1)*data["cellsize"],fill="white")
+    # print("drawship",ship)
     return
 
 
@@ -237,6 +240,7 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
+    # print("validship",ship)
     v = isVertical(ship)
     h = isHorizontal(ship)
     cship=checkShip(grid, ship)
@@ -253,10 +257,13 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def placeShip(data):
+    print("placeship",data)
     egrid = data["userboard"]
     if shipIsValid(egrid, data["tempship"]) == True:
         for x in data["tempship"]:
+            # print("egrid[x[0]][x[1]]",egrid[x[0]][x[1]])
             egrid[x[0]][x[1]] = SHIP_UNCLICKED
+        print("egrid",egrid)
         data["userShip"] = data["userShip"] + 1
     else:
         print("ship is not valid")
