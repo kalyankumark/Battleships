@@ -227,7 +227,7 @@ def drawShip(data, canvas, ship):
         fst=a[0]
         sec=a[1]
         canvas.create_rectangle(sec*data["cellsize"],fst * data["cellsize"], (1 + sec) * data["cellsize"], 
-                                       (fst + 1)*data["cellsize"],fill="white")
+                                         (fst + 1)*data["cellsize"],fill="white")
     return
 
 

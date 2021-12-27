@@ -5,7 +5,7 @@ values=d.values()
 # print(values)
 temp = 1
 for i in d:
-    temp = temp * d[i]
+    temp = temp + d[i]
     print(d[i])
 print(temp)
 # print(sum(values))
